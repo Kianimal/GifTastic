@@ -1,0 +1,16 @@
+html body{
+    padding:0;
+    margin:0;
+    height:100%;
+    background-color: cornsilk;
+}
+#btnContainer{
+    width: 100%;
+    min-height: 100px;
+    background-color: skyblue;
+    border-bottom:2px solid steelblue;
+}
+
+.btnMenu{
+
+}
