@@ -43,7 +43,8 @@ $(document.body).on("click",".btnMenu",function(){
   }).then(function(response) {
     var content = document.getElementById("imgContainer");
     var stillImg = response.data[0].images.fixed_width_still.url;
-    $(content).append("<img src ='" + stillImg + "'>");
+    var rating = response.data[0].rating;
+    $(content).append("<div class='gifWrap'><img src ='" + stillImg + "'><br><p class='rating'>Rating: " + rating + "</p></div>");
     console.log(response);
   });
 });

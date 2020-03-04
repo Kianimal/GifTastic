@@ -120,9 +120,15 @@
         margin: auto;
         overflow-y: auto;
     }
+
+    .gifWrap {
+        padding:5px;
+        margin: 5px;
+        display: inline-block;
+        font-family: Arial, Helvetica, sans-serif;
+    }
     
     img{
-        margin: 5px;
         box-shadow: 1px 1px 3px #222;
     }
 
