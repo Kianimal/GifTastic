@@ -2,7 +2,7 @@ var buttonList = ["Apex Legends",
                   "PUBG",
                   "Fortnite",
                   "Destiny 2",
-                  "Escape From Tarkov"
+                  "Escape From Tarkov",
                 ];
 
 function createButtons(arr) {
@@ -30,9 +30,10 @@ $(clicked).click(function(){
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    var content = document.getElementById("btnContainer");
-    var stillImg = response.data[0].images.original_still.url;
+    var content = document.getElementById("imgContainer");
+    var stillImg = response.data[0].images.fixed_width_still.url;
     $(content).append("<img src ='" + stillImg + "'>");
+    console.log(response);
   });
 });
 
