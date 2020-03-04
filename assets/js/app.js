@@ -6,26 +6,37 @@ var buttonList = ["Apex Legends",
                 ];
 
 function createButtons(arr) {
+  $("#btnWrap").empty();
   for(i=0; i<arr.length; i++){
     var btnDiv = $("<div>");
     btnDiv.attr("class","btnMenu");
     btnDiv.text(arr[i]);
-    var content = document.getElementById("btnContainer");
+    var content = document.getElementById("btnWrap");
     $(content).append(btnDiv);
-    console.log("inside loop");
+    clicked = document.getElementsByClassName("btnMenu");
   }
 }
 
 createButtons(buttonList);
 
-var clicked = document.getElementsByClassName("btnMenu");
+var btnSubmit = document.getElementById("btnSubmit");
 
-$(clicked).click(function(){
+$("form").submit(function(event){
+  console.log("BTN SUBMIT WORKS");
+  buttonList.push($("#gameEntry").val());
+  createButtons(buttonList);
+  event.preventDefault();
+  this.reset();
+});
+
+var clicked;
+
+$(document.body).on("click",".btnMenu",function(){
   console.log(this.innerText);
   var searchTerm = this.innerText;
   searchTerm = searchTerm.toLowerCase().trim().split(' ').join('+');
   var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=iOVspgT4s9daQGKag345gmCFIKM39WRV";
-               // http://api.giphy.com/v1/gifs/search?q=    ryan+gosling  &api_key=YOUR_API_KEY&limit=5
+
   $.ajax({
     url: queryURL,
     method: "GET"

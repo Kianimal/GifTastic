@@ -78,6 +78,10 @@
         box-shadow: 1px 0px 3px #222;
     }
 
+    #btnWrap{
+        padding:5px;
+    }
+
     .btnMenu{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
@@ -132,7 +136,7 @@
     }
 
     input{
-        background-color: khaki;
+        background-color: white;
     }
 
 }
