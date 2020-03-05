@@ -54,7 +54,7 @@ $(document.body).on("click",".gif",function(){
 $(document.body).on("click",".btnMenu",function(){
   var searchTerm = this.innerText;
   searchTerm = searchTerm.toLowerCase().trim().split(' ').join('+');
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=iOVspgT4s9daQGKag345gmCFIKM39WRV";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=iOVspgT4s9daQGKag345gmCFIKM39WRV";
 
   $.ajax({
     url: queryURL,
