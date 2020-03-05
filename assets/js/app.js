@@ -5,6 +5,13 @@ var buttonList = ["Apex Legends",
                   "Escape From Tarkov",
                 ];
 
+var reqCount = 10;
+var btnSubmit = document.getElementById("btnSubmit");
+var urlStill = [];
+var urlAnim = [];
+var idCounter = 0;
+
+//Function to render buttons from buttonList array
 function createButtons(arr) {
   $("#btnWrap").empty();
   for(i=0; i<arr.length; i++){
@@ -13,26 +20,29 @@ function createButtons(arr) {
     btnDiv.text(arr[i]);
     var content = document.getElementById("btnWrap");
     $(content).append(btnDiv);
-    clicked = document.getElementsByClassName("btnMenu");
   }
 }
 
+//Initial button loadout on pageload
 createButtons(buttonList);
 
-var btnSubmit = document.getElementById("btnSubmit");
-
+//Functionality for form submission and button re-creation
 $("form").submit(function(event){
-  console.log("BTN SUBMIT WORKS");
   buttonList.push($("#gameEntry").val());
   createButtons(buttonList);
   event.preventDefault();
   this.reset();
 });
 
-var clicked;
+//Functionality to animate GIF
+$(document.body).on("click",".gif",function(){
+  console.log($(this).attr("id"));
+  var id = $(this).attr("id");
+  $(this).attr("src",urlAnim[id]);
+});
 
+// Functionality for menu buttons to append GIFs
 $(document.body).on("click",".btnMenu",function(){
-  console.log(this.innerText);
   var searchTerm = this.innerText;
   searchTerm = searchTerm.toLowerCase().trim().split(' ').join('+');
   var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=iOVspgT4s9daQGKag345gmCFIKM39WRV";
@@ -42,9 +52,14 @@ $(document.body).on("click",".btnMenu",function(){
     method: "GET"
   }).then(function(response) {
     var content = document.getElementById("imgContainer");
-    var stillImg = response.data[0].images.fixed_width_still.url;
-    var rating = response.data[0].rating;
-    $(content).append("<div class='gifWrap'><img src ='" + stillImg + "'><br><p class='rating'>Rating: " + rating + "</p></div>");
+    for(i=0;i<reqCount;i++){
+      urlStill[idCounter] = response.data[i].images["480w_still"].url;
+      urlAnim[idCounter] = response.data[i].images.fixed_height.url;
+      var rating = response.data[i].rating.toUpperCase();
+      $(content).append("<div class='gifWrap'><img id='"+idCounter+"' class='gif' src ='" + urlStill[idCounter] + 
+                        "'><br><p class='rating'>Rating: " + rating + "</p></div>");
+      idCounter++;
+    }
     console.log(response);
   });
 });
