@@ -10,7 +10,6 @@ var btnSubmit = document.getElementById("btnSubmit");
 var urlStill = [];
 var urlAnim = [];
 var idCounter = 0;
-var animated = false;
 
 //Function to render buttons from buttonList array
 function createButtons(arr) {
@@ -37,13 +36,19 @@ $("form").submit(function(event){
 
 //Functionality to animate GIF
 $(document.body).on("click",".gif",function(){
-  if(animated == false){
+  // var animated = $(this).attr("animated");
+  if($(this).prop("animated") == false){
+    $(this).prop("animated",true);
+    // animated = true;
     console.log($(this).attr("id"));
+    console.log($(this).prop("animated"));
     var id = $(this).attr("id");
     $(this).attr("src",urlAnim[id]);
     animated = true;
   }
   else{
+    $(this).prop("animated",false);
+    console.log($(this).prop("animated"));
     var id = $(this).attr("id");
     $(this).attr("src",urlStill[id]);
     animated = false;
@@ -67,6 +72,7 @@ $(document.body).on("click",".btnMenu",function(){
       var rating = response.data[i].rating.toUpperCase();
       $(content).append("<div class='gifWrap'><img id='"+idCounter+"' class='gif' src ='" + urlStill[idCounter] + 
                         "'><br><p class='rating'>Rating: " + rating + "</p></div>");
+      $("#"+idCounter).prop("animated",false);
       idCounter++;
     }
     console.log(response);
