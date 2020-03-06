@@ -10,11 +10,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <div id="btnContainer">
             <div id="addBtn">
-                <form>
-                    <label for="gameID">Add a game to GIFify:</label><br>
-                    <input type="text" id="gameEntry" name="gameID">
-                    <input type="submit" id="btnSubmit" value="Add">
-                </form>
+                <div id="forms">
+                    <form>
+                        <label for="gameID">Add a game to GIFify:</label><br>
+                        <input type="text" id="gameEntry" name="gameID">
+                        <input type="submit" id="btnSubmit" value="Add">
+                    </form>
+                    <form>
+                        <label>How many GIFs to search for?</label><br>
+                        <select id="limit" onchange="changeLimit(this)">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                        </select>
+                    </form>
+                </div>
             </div>
             <div id="btnWrap">
             </div>

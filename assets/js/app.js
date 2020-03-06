@@ -10,6 +10,7 @@ var btnSubmit = document.getElementById("btnSubmit");
 var urlStill = [];
 var urlAnim = [];
 var idCounter = 0;
+var limit = 5;
 
 //Function to render buttons from buttonList array
 function createButtons(arr) {
@@ -34,12 +35,20 @@ $("form").submit(function(event){
   this.reset();
 });
 
+function changeLimit(event){
+  var newLimit = event.value;
+  limit = newLimit;
+  console.log(limit);
+}
+
 //Functionality to animate GIF
 $(document.body).on("click",".gif",function(){
-  // var animated = $(this).attr("animated");
+  if($(this).prop("rating") == "PG-13" || $(this).prop("rating") == "R") {    
+    $(this).toggleClass("img-blur",false);
+  };
+  
   if($(this).prop("animated") == false){
     $(this).prop("animated",true);
-    // animated = true;
     console.log($(this).attr("id"));
     console.log($(this).prop("animated"));
     var id = $(this).attr("id");
@@ -47,6 +56,9 @@ $(document.body).on("click",".gif",function(){
     animated = true;
   }
   else{
+    if($(this).prop("rating") == "PG-13" || $(this).prop("rating") == "R") {    
+      $(this).toggleClass("img-blur",true);
+    };
     $(this).prop("animated",false);
     console.log($(this).prop("animated"));
     var id = $(this).attr("id");
@@ -66,26 +78,19 @@ $(document.body).on("click",".btnMenu",function(){
     method: "GET"
   }).then(function(response) {
     var content = document.getElementById("imgContainer");
-    for(i=0;i<reqCount;i++){
+    for(i=0;i<limit;i++){
       urlStill[idCounter] = response.data[i].images["480w_still"].url;
       urlAnim[idCounter] = response.data[i].images.fixed_height.url;
       var rating = response.data[i].rating.toUpperCase();
       $(content).append("<div class='gifWrap'><img id='"+idCounter+"' class='gif' src ='" + urlStill[idCounter] + 
                         "'><br><p class='rating'>Rating: " + rating + "</p></div>");
+      if(rating == "PG-13" || rating == "R"){
+        $("#"+idCounter).toggleClass("img-blur");
+      }
       $("#"+idCounter).prop("animated",false);
+      $("#"+idCounter).prop("rating",rating);
       idCounter++;
     }
     console.log(response);
   });
 });
-
-// // var queryURL = "https://api.giphy.com/v1/gifs/?" +  + "&api_key=iOVspgT4s9daQGKag345gmCFIKM39WRV";
-
-//     $.ajax({
-//       url: queryURL,
-//       method: "GET"
-//     }).then(function(response) {
-//       var content = document.getElementById("btnContainer");
-//       var stillImg = response.data[0].images.original_still.url;
-//       // $(content).append("<img src ='" + stillImg + "'>");
-    // });
