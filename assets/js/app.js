@@ -9,7 +9,7 @@ var buttonList = ["Apex Legends",
 var urlStill = []; // Holds all URLs for still images
 var urlAnim = [];  // Holds all URLs for GIFs
 var idCounter = 0; // A unique numerical ID for all images starting at 0
-var limit = 5;     // The default limit of GIFs to display
+var limit = 10;     // The default limit of GIFs to display
 
 //Initial button loadout on pageload
 createButtons(buttonList);
