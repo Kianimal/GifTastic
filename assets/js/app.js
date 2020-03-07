@@ -26,6 +26,11 @@ function createButtons(arr) {
   }
 };
 
+//Functionality for the clear display button
+$("#clearBtn").click(function(){
+  $("#imgContainer").empty();
+});
+
 //Functionality for form submission and button re-creation
 $("form").submit(function(event){
   buttonList.push($("#gameEntry").val());

@@ -80,6 +80,33 @@
         overflow-y: auto;
     }
 
+    #clearBtn{
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        padding: 5px;
+        border: 2px solid white;
+        border-radius: 5px;
+        background-color: skyblue;
+        box-shadow: 1px 1px 3px #222;
+        display: inline-block;
+    }
+    #clearBtn:hover{
+        cursor: pointer;
+        color: white;
+        background-color: crimson;
+        box-shadow: .5px .5px 2px #333;
+    }
+
+    #clearBtn:active{
+        cursor: pointer;
+        color: white;
+        background-color: darkred;
+        box-shadow: none;
+    }
+
     #btnWrap{
         padding:5px;
     }
@@ -154,6 +181,7 @@
     }
 
     #addBtn{
+        position: relative;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         background-color: steelblue;
