@@ -112,9 +112,9 @@
     #imgContainer{
         position: relative;
         top:0;
-        left: 25%;
+        left: 20%;
         padding: 25px;
-        width: 70%;
+        width: 77%;
         height: 100%;
         overflow-y: auto;
     }
@@ -122,7 +122,7 @@
     .gifWrap {
         width: 240px;
         max-height: 240px;
-        padding:5px;
+        padding:10px;
         margin: 5px;
         display: inline-block;
     }
@@ -132,15 +132,20 @@
         max-height: 240px;
         border-radius: 5px;
         box-shadow: 1px 1px 3px #222;
+        transition: filter 0.5s;
     }
 
     img:hover{
         cursor: pointer;
     }
 
+    img:active{
+        box-shadow: .25px .25px 1px !important;
+    }
+
     .img-blur{
         border-radius: 5px;
-        filter: blur(8px) !important;
+        filter: blur(5px) !important;
     }
 
     .rating{
